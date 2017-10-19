@@ -58,7 +58,8 @@ export class Engine {
             "TaskUnitSingle",
             "TaskE2EInstall",
             "TaskE2E",
-            "TaskE2ESingle"
+            "TaskE2ESingle",
+            "TaskServe"
         ];
 
         commands.forEach(command => {
@@ -502,6 +503,14 @@ export class Engine {
             }
         }
     }
+
+    private async commandTaskServe(): Promise<void> {
+        await this.relocateToPackageJsonFolder();
+
+        return this.exec(["gulp",
+            "serve"
+        ]);
+    }    
 
     private quickPick(prompt: string, choices: string[]): Promise<string> {
         return new Promise<string>((resolve, reject) => {

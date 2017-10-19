@@ -106,6 +106,10 @@
             {
                 "command": "extension.unitejs.taskE2ESingle",
                 "title": "unite task e2e (single)"
+            },
+            {
+                "command": "extension.unitejs.taskServe",
+                "title": "unite task serve"
             }
         ]
     },
@@ -132,7 +136,8 @@
         "onCommand:extension.unitejs.taskUnitSingle",
         "onCommand:extension.unitejs.taskE2EInstall",
         "onCommand:extension.unitejs.taskE2E",
-        "onCommand:extension.unitejs.taskE2ESingle"
+        "onCommand:extension.unitejs.taskE2ESingle",
+        "onCommand:extension.unitejs.taskServe"
     ],
     "scripts": {
         "vscode:prepublish": "npm run compile",
