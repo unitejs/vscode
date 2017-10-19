@@ -1,0 +1,159 @@
+{
+    "name": "unitejs-vscode",
+    "displayName": "unitejs-vscode",
+    "description": "VSCode integration for UniteJS CLI",
+    "version": "0.0.1",
+    "publisher": "unitejs",
+    "license": "MIT",
+    "engines": {
+        "vscode": "^1.17.0",
+        "node": "^8.0.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.unitejs.version",
+                "title": "unite version"
+            },
+            {
+                "command": "extension.unitejs.help",
+                "title": "unite help"
+            },
+            {
+                "command": "extension.unitejs.configureProfile",
+                "title": "unite configure with profile"
+            },
+            {
+                "command": "extension.unitejs.configureOptions",
+                "title": "unite configure with options"
+            },
+            {
+                "command": "extension.unitejs.configureOptionsNoExecute",
+                "title": "unite configure with options (don't execute)"
+            },
+            {
+                "command": "extension.unitejs.configureUpdate",
+                "title": "unite configure (update only)"
+            },
+            {
+                "command": "extension.unitejs.installPackages",
+                "title": "unite install packages"
+            },
+            {
+                "command": "extension.unitejs.buildConfigurationAdd",
+                "title": "unite buildConfiguration add"
+            },
+            {
+                "command": "extension.unitejs.buildConfigurationRemove",
+                "title": "unite buildConfiguration remove"
+            },
+            {
+                "command": "extension.unitejs.generate",
+                "title": "unite generate"
+            },
+            {
+                "command": "extension.unitejs.clientPackageAddProfile",
+                "title": "unite clientPackage add profile"
+            },
+            {
+                "command": "extension.unitejs.clientPackageAddOptions",
+                "title": "unite clientPackage add options"
+            },
+            {
+                "command": "extension.unitejs.clientPackageRemove",
+                "title": "unite clientPackage remove"
+            },
+            {
+                "command": "extension.unitejs.platformAdd",
+                "title": "unite platform add"
+            },
+            {
+                "command": "extension.unitejs.platformRemove",
+                "title": "unite platform remove"
+            },
+            {
+                "command": "extension.unitejs.taskBuild",
+                "title": "unite task build"
+            },
+            {
+                "command": "extension.unitejs.taskBuildWatch",
+                "title": "unite task build watch"
+            },
+            {
+                "command": "extension.unitejs.taskThemeBuild",
+                "title": "unite task theme build"
+            },
+            {
+                "command": "extension.unitejs.taskUnit",
+                "title": "unite task unit"
+            },
+            {
+                "command": "extension.unitejs.taskUnitSingle",
+                "title": "unite task unit (single)"
+            },
+            {
+                "command": "extension.unitejs.taskE2EInstall",
+                "title": "unite task e2e install"
+            },
+            {
+                "command": "extension.unitejs.taskE2E",
+                "title": "unite task e2e"
+            },
+            {
+                "command": "extension.unitejs.taskE2ESingle",
+                "title": "unite task e2e (single)"
+            }
+        ]
+    },
+    "activationEvents": [
+        "onCommand:extension.unitejs.version",
+        "onCommand:extension.unitejs.help",
+        "onCommand:extension.unitejs.configureProfile",
+        "onCommand:extension.unitejs.configureOptions",
+        "onCommand:extension.unitejs.configureOptionsNoExecute",
+        "onCommand:extension.unitejs.configureUpdate",
+        "onCommand:extension.unitejs.installPackages",
+        "onCommand:extension.unitejs.buildConfigurationAdd",
+        "onCommand:extension.unitejs.buildConfigurationRemove",
+        "onCommand:extension.unitejs.generate",
+        "onCommand:extension.unitejs.clientPackageAddProfile",
+        "onCommand:extension.unitejs.clientPackageAddOptions",
+        "onCommand:extension.unitejs.clientPackageRemove",
+        "onCommand:extension.unitejs.platformAdd",
+        "onCommand:extension.unitejs.platformRemove",
+        "onCommand:extension.unitejs.taskBuild",
+        "onCommand:extension.unitejs.taskBuildWatch",
+        "onCommand:extension.unitejs.taskThemeBuild",
+        "onCommand:extension.unitejs.taskUnit",
+        "onCommand:extension.unitejs.taskUnitSingle",
+        "onCommand:extension.unitejs.taskE2EInstall",
+        "onCommand:extension.unitejs.taskE2E",
+        "onCommand:extension.unitejs.taskE2ESingle"
+    ],
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "lint": "tslint ./src/*.ts -t verbose",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^7.0.43",
+        "tslint": "^5.7.0",
+        "typescript": "^2.5.3",
+        "vscode": "^1.1.5"
+    },
+    "dependencies": {
+        "unitejs-cli": "^1.4.0",
+        "unitejs-cli-core": "^1.0.2",
+        "unitejs-engine": "^1.4.0",
+        "unitejs-framework": "^1.0.2",
+        "util.promisify": "^1.0.0"
+    }
+}
