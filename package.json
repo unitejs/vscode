@@ -2,14 +2,13 @@
     "name": "unitejs-vscode",
     "displayName": "Unite JS",
     "description": "VSCode integration for UniteJS CLI",
-    "version": "0.0.2",
+    "version": "1.0.0",
     "publisher": "unitejs",
     "license": "MIT",
     "engines": {
         "vscode": "^1.17.0",
         "node": "^8.0.0"
     },
-    "preview": true,
     "categories": [
         "Other"
     ],
@@ -267,7 +266,6 @@
     },
     "dependencies": {
         "unitejs-cli": "^1.5.1",
-        "unitejs-engine": "^1.5.1",
         "util.promisify": "^1.0.0"
     }
 }

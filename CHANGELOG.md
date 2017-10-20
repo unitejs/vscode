@@ -2,6 +2,6 @@
 
 What's changed in UniteJS VSCode extension.
 
-## v0.0.1
+## v1.0.0
 
-* Preview release
+* Initial release

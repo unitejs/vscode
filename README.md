@@ -63,3 +63,5 @@ See [UniteJS Generated App](http://unitejs.com/#/generatedapp) documentation for
 | Unite: task platform electron package         | gulp platform-electron-package              |                                    |
 | Unite: task platform electron package options | gulp platform-electron-package              | runtimeVersion, platformArch, save |
 | Unite: task platform web package              | gulp platform-web-package                   |                                    |
+
+&copy; 2017 Obany Ltd
