@@ -1,6 +1,6 @@
 {
     "name": "unitejs-vscode",
-    "displayName": "unitejs-vscode",
+    "displayName": "Unite JS",
     "description": "VSCode integration for UniteJS CLI",
     "version": "0.0.1",
     "publisher": "unitejs",
