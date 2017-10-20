@@ -5,3 +5,6 @@ out/**/*.map
 src/**
 .gitignore
 tsconfig.json
+tslint.json
+.history/**
+*.vsix
