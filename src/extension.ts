@@ -1,14 +1,17 @@
+/**
+ * Extension
+ */
 import { ErrorHandler } from "unitejs-framework/dist/helpers/errorHandler";
 import * as vscode from "vscode";
-import { Engine } from "./engine";
+import { Executor } from "./executor";
 import * as shimUtilPromisify from "util.promisify/shim";
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
     try {
         shimUtilPromisify();
-        const engine = new Engine();
-        await engine.initialise();
-        await engine.registerCommands(context);
+        const executor = new Executor();
+        await executor.initialise();
+        await executor.registerCommands(context);
     } catch (err) {
         const outputChannel = vscode.window.createOutputChannel("UniteJS");
 

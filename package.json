@@ -9,107 +9,206 @@
         "vscode": "^1.17.0",
         "node": "^8.0.0"
     },
+    "preview": true,
     "categories": [
         "Other"
     ],
     "main": "./out/extension",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/unitejs/vscode.git"
+    },
+    "author": "martyn@unitejs.com",
+    "bugs": {
+        "url": "https://github.com/unitejs/vscode/issues"
+    },
+    "homepage": "https://github.com/unitejs/vscode#readme",
+    "icon": "images/icon.png",
+    "galleryBanner": {
+        "color": "#C80000",
+        "theme": "dark"
+    },
     "contributes": {
         "commands": [
             {
                 "command": "extension.unitejs.version",
-                "title": "unite version"
+                "title": "version",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.help",
-                "title": "unite help"
+                "title": "help",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.configureProfile",
-                "title": "unite configure with profile"
+                "title": "configure profile",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.configureOptions",
-                "title": "unite configure with options"
+                "title": "configure options",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.configureOptionsNoExecute",
-                "title": "unite configure with options (don't execute)"
+                "title": "configure options no exec",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.configureUpdate",
-                "title": "unite configure (update only)"
+                "title": "configure update",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.installPackages",
-                "title": "unite install packages"
+                "title": "install packages",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.buildConfigurationAdd",
-                "title": "unite buildConfiguration add"
+                "title": "buildConfiguration add",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.buildConfigurationRemove",
-                "title": "unite buildConfiguration remove"
+                "title": "buildConfiguration remove",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.generate",
-                "title": "unite generate"
+                "title": "generate",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.clientPackageAddProfile",
-                "title": "unite clientPackage add profile"
+                "title": "clientPackage add profile",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.clientPackageAddOptions",
-                "title": "unite clientPackage add options"
+                "title": "clientPackage add options",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.clientPackageRemove",
-                "title": "unite clientPackage remove"
+                "title": "clientPackage remove",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.platformAdd",
-                "title": "unite platform add"
+                "title": "platform add",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.platformRemove",
-                "title": "unite platform remove"
+                "title": "platform remove",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.taskBuild",
-                "title": "unite task build"
+                "title": "task build",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskBuildConfiguration",
+                "title": "task build configuration",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.taskBuildWatch",
-                "title": "unite task build watch"
+                "title": "task build watch",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.taskThemeBuild",
-                "title": "unite task theme build"
+                "title": "task theme build",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.taskUnit",
-                "title": "unite task unit"
+                "title": "task unit",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.taskUnitSingle",
-                "title": "unite task unit (single)"
+                "title": "task unit single",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskUnitWatch",
+                "title": "task unit watch",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskUnitOptions",
+                "title": "task unit options",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.taskE2EInstall",
-                "title": "unite task e2e install"
+                "title": "task e2e install",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.taskE2E",
-                "title": "unite task e2e"
+                "title": "task e2e",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.taskE2ESingle",
-                "title": "unite task e2e (single)"
+                "title": "task e2e single",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskE2EOptions",
+                "title": "task e2e options",
+                "category": "Unite"
             },
             {
                 "command": "extension.unitejs.taskServe",
-                "title": "unite task serve"
+                "title": "task serve",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskServeOptions",
+                "title": "task serve options",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskPlatformDockerPackage",
+                "title": "task platform docker package",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskPlatformDockerPackageOptions",
+                "title": "task platform docker package options",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskPlatformElectronDev",
+                "title": "task platform electron dev",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskPlatformElectronDevOptions",
+                "title": "task platform electron dev options",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskPlatformElectronPackage",
+                "title": "task platform electron package",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskPlatformElectronPackageOptions",
+                "title": "task platform electron package options",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskPlatformWebPackage",
+                "title": "task platform web package",
+                "category": "Unite"
             }
         ]
     },
@@ -130,14 +229,26 @@
         "onCommand:extension.unitejs.platformAdd",
         "onCommand:extension.unitejs.platformRemove",
         "onCommand:extension.unitejs.taskBuild",
+        "onCommand:extension.unitejs.taskBuildConfiguration",
         "onCommand:extension.unitejs.taskBuildWatch",
         "onCommand:extension.unitejs.taskThemeBuild",
         "onCommand:extension.unitejs.taskUnit",
+        "onCommand:extension.unitejs.taskUnitWatch",
         "onCommand:extension.unitejs.taskUnitSingle",
+        "onCommand:extension.unitejs.taskUnitOptions",
         "onCommand:extension.unitejs.taskE2EInstall",
         "onCommand:extension.unitejs.taskE2E",
         "onCommand:extension.unitejs.taskE2ESingle",
-        "onCommand:extension.unitejs.taskServe"
+        "onCommand:extension.unitejs.taskE2EOptions",
+        "onCommand:extension.unitejs.taskServe",
+        "onCommand:extension.unitejs.taskServeOptions",
+        "onCommand:extension.unitejs.taskPlatformDockerPackage",
+        "onCommand:extension.unitejs.taskPlatformDockerPackageOptions",
+        "onCommand:extension.unitejs.taskPlatformElectronDev",
+        "onCommand:extension.unitejs.taskPlatformElectronDevOptions",
+        "onCommand:extension.unitejs.taskPlatformElectronPackage",
+        "onCommand:extension.unitejs.taskPlatformElectronPackageOptions",
+        "onCommand:extension.unitejs.taskPlatformWebPackage"
     ],
     "scripts": {
         "vscode:prepublish": "npm run compile",
@@ -155,9 +266,9 @@
         "vscode": "^1.1.5"
     },
     "dependencies": {
-        "unitejs-cli": "^1.4.0",
-        "unitejs-cli-core": "^1.0.2",
-        "unitejs-engine": "^1.4.0",
+        "unitejs-cli": "^1.5.0",
+        "unitejs-cli-core": "^1.1.0",
+        "unitejs-engine": "^1.5.0",
         "unitejs-framework": "^1.0.2",
         "util.promisify": "^1.0.0"
     }
