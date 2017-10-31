@@ -265,7 +265,7 @@
         "vscode": "^1.1.5"
     },
     "dependencies": {
-        "unitejs-cli": "^1.5.1",
+        "unitejs-cli": "^1.6.0",
         "util.promisify": "^1.0.0"
     }
 }
