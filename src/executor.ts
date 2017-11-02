@@ -279,15 +279,19 @@ export class Executor {
                 if (minify !== undefined) {
                     const sourcemaps = await this.quickPick("Add sourcemaps to the build ?", await this.getBooleanOptions());
                     if (sourcemaps !== undefined) {
-                        return this.exec(["unite",
-                            "buildConfiguration",
-                            `--operation=add`,
-                            `--configurationName=${configurationName}`,
-                            `--bundle=${bundle}`,
-                            `--minify=${minify}`,
-                            `--sourcemaps=${sourcemaps}`,
-                            `--outputDirectory="${this._uniteJsonLocation}"`
-                        ], true, true);
+                        const pwa = await this.quickPick("Enable PWA for the build ?", await this.getBooleanOptions());
+                        if (pwa !== undefined) {
+                            return this.exec(["unite",
+                                "buildConfiguration",
+                                `--operation=add`,
+                                `--configurationName=${configurationName}`,
+                                `--bundle=${bundle}`,
+                                `--minify=${minify}`,
+                                `--pwa=${pwa}`,
+                                `--sourcemaps=${sourcemaps}`,
+                                `--outputDirectory="${this._uniteJsonLocation}"`
+                            ], true, true);
+                        }
                     }
                 }
             }

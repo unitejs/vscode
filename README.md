@@ -27,7 +27,7 @@ See [UniteJS CLI](http://unitejs.com/#/cli) documentation for more details.
 | Unite: configure update                | unite configure                             | no arguments only performs update |
 | Unite: install packages                | npm install / yarn install                  | depends on chosen package manager |
 | Unite: buildConfiguration add          | unite buildConfiguration --operation=add    | configurationName, bundle, minify |
-|                                        |                                             | sourcemaps                        |
+|                                        |                                             | sourcemaps, pwa                   |
 | Unite: buildConfiguration remove       | unite buildConfiguration --operation=remove | configurationName                 |
 | Unite: generate                        | unite generate                              | name, type                        |
 | Unite: clientPackage add profile       | unite clientPackage --operation=add         | profile                           |
