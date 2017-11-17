@@ -63,11 +63,16 @@ export class Executor {
             "TaskUnitWatch",
             "TaskUnitOptions",
             "TaskE2EInstall",
+            "TaskE2EInstallOptions",
             "TaskE2E",
             "TaskE2ESingle",
             "TaskE2EOptions",
             "TaskServe",
             "TaskServeOptions",
+            "TaskPlatformCordovaDev",
+            "TaskPlatformCordovaDevOptions",
+            "TaskPlatformCordovaTheme",
+            "TaskPlatformCordovaThemeOptions",
             "TaskPlatformDockerPackage",
             "TaskPlatformDockerPackageOptions",
             "TaskPlatformElectronDev",
@@ -202,6 +207,7 @@ export class Executor {
                         { key: "e2eTestFramework", dir: "testFramework", showCondition: () => parameters.find(param => param.key === "e2eTestRunner").value !== "None" },
                         { key: "cssPre" },
                         { key: "cssPost" },
+                        { key: "cssLinter" },
                         { key: "packageManager" }
                     ];
 
@@ -590,6 +596,31 @@ export class Executor {
         }
     }
 
+    private async commandTaskE2EInstallOptions(): Promise<void> {
+        const uniteConfig = await this.loadConfiguration();
+
+        if (uniteConfig) {
+            if (uniteConfig.e2eTestRunner === "None") {
+                vscode.window.showErrorMessage("Your UniteJS configuration does not specify a e2e test runner");
+            } else {
+                const drivers = await this.inputBox("Which drivers to install comma separated (chrome/edge/firefox/ie) ?");
+                if (drivers !== undefined) {
+                    await this.relocateToPackageJsonFolder(uniteConfig);
+
+                    const args = ["gulp",
+                        "e2e-install"
+                    ];
+
+                    if (drivers.length > 0) {
+                        args.push(`--drivers=${drivers}`);
+                    }
+
+                    return this.exec(args, false, true);
+                }
+            }
+        }
+    }
+
     private async commandTaskE2E(): Promise<void> {
         const uniteConfig = await this.loadConfiguration();
 
@@ -617,7 +648,7 @@ export class Executor {
                     await this.relocateToPackageJsonFolder(uniteConfig);
 
                     const args = ["gulp",
-                        "unite"
+                        "e2e"
                     ];
 
                     if (grep.length > 0) {
@@ -709,6 +740,89 @@ export class Executor {
 
                     return this.exec(args, false, true);
                 }
+            }
+        }
+    }
+
+    private async commandTaskPlatformCordovaDev(): Promise<void> {
+        const uniteConfig = await this.loadConfiguration();
+        if (uniteConfig) {
+            if (uniteConfig.platforms && uniteConfig.platforms.Cordova) {
+                await this.relocateToPackageJsonFolder(uniteConfig);
+                return this.exec(["gulp",
+                    "platform-cordova-dev"
+                ], false, true);
+            } else {
+                vscode.window.showErrorMessage("You need to add Cordova as a platform before you can run this task.");
+            }
+        }
+    }
+
+    private async commandTaskPlatformCordovaDevOptions(): Promise<void> {
+        const uniteConfig = await this.loadConfiguration();
+        if (uniteConfig) {
+            if (uniteConfig.platforms && uniteConfig.platforms.Cordova) {
+                const platforms = await this.inputBox("Platforms comma separated (leave blank for default) ?");
+                if (platforms !== undefined) {
+                    const save = await this.quickPick("Save as defaults ?", await this.getBooleanOptions());
+                    if (save !== undefined) {
+                        await this.relocateToPackageJsonFolder(uniteConfig);
+
+                        const args = ["gulp",
+                            "platform-cordova-dev"
+                        ];
+
+                        if (platforms.length > 0) {
+                            args.push(`--platforms=${platforms}`);
+                        }
+
+                        if (save === "true") {
+                            args.push(`--save`);
+                        }
+
+                        return this.exec(args, false, true);
+                    }
+                }
+            } else {
+                vscode.window.showErrorMessage("You need to add Cordova as a platform before you can run this task.");
+            }
+        }
+    }
+
+    private async commandTaskPlatformCordovaTheme(): Promise<void> {
+        const uniteConfig = await this.loadConfiguration();
+        if (uniteConfig) {
+            if (uniteConfig.platforms && uniteConfig.platforms.Cordova) {
+                await this.relocateToPackageJsonFolder(uniteConfig);
+                return this.exec(["gulp",
+                    "platform-cordova-theme"
+                ], false, true);
+            } else {
+                vscode.window.showErrorMessage("You need to add Cordova as a platform before you can run this task.");
+            }
+        }
+    }
+
+    private async commandTaskPlatformCordovaThemeOptions(): Promise<void> {
+        const uniteConfig = await this.loadConfiguration();
+        if (uniteConfig) {
+            if (uniteConfig.platforms && uniteConfig.platforms.Cordova) {
+                const platforms = await this.inputBox("Platforms comma separated (leave blank for default) ?");
+                if (platforms !== undefined) {
+                    await this.relocateToPackageJsonFolder(uniteConfig);
+
+                    const args = ["gulp",
+                        "platform-cordova-theme"
+                    ];
+
+                    if (platforms.length > 0) {
+                        args.push(`--platforms=${platforms}`);
+                    }
+
+                    return this.exec(args, false, true);
+                }
+            } else {
+                vscode.window.showErrorMessage("You need to add Cordova as a platform before you can run this task.");
             }
         }
     }

@@ -2,7 +2,7 @@
     "name": "unitejs-vscode",
     "displayName": "Unite JS",
     "description": "VSCode integration for UniteJS CLI",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "publisher": "unitejs",
     "license": "MIT",
     "engines": {
@@ -150,6 +150,11 @@
                 "category": "Unite"
             },
             {
+                "command": "extension.unitejs.taskE2EInstallOptions",
+                "title": "task e2e install options",
+                "category": "Unite"
+            },
+            {
                 "command": "extension.unitejs.taskE2E",
                 "title": "task e2e",
                 "category": "Unite"
@@ -172,6 +177,26 @@
             {
                 "command": "extension.unitejs.taskServeOptions",
                 "title": "task serve options",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskPlatformCordovaDev",
+                "title": "task platform cordova dev",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskPlatformCordovaDevOptions",
+                "title": "task platform cordova dev options",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskPlatformCordovaTheme",
+                "title": "task platform cordova theme",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskPlatformCordovaThemeOptions",
+                "title": "task platform cordova theme options",
                 "category": "Unite"
             },
             {
@@ -236,6 +261,7 @@
         "onCommand:extension.unitejs.taskUnitSingle",
         "onCommand:extension.unitejs.taskUnitOptions",
         "onCommand:extension.unitejs.taskE2EInstall",
+        "onCommand:extension.unitejs.taskE2EInstallOptions",
         "onCommand:extension.unitejs.taskE2E",
         "onCommand:extension.unitejs.taskE2ESingle",
         "onCommand:extension.unitejs.taskE2EOptions",
@@ -243,6 +269,10 @@
         "onCommand:extension.unitejs.taskServeOptions",
         "onCommand:extension.unitejs.taskPlatformDockerPackage",
         "onCommand:extension.unitejs.taskPlatformDockerPackageOptions",
+        "onCommand:extension.unitejs.taskPlatformCordovaDev",
+        "onCommand:extension.unitejs.taskPlatformCordovaDevOptions",
+        "onCommand:extension.unitejs.taskPlatformCordovaTheme",
+        "onCommand:extension.unitejs.taskPlatformCordovaThemeOptions",
         "onCommand:extension.unitejs.taskPlatformElectronDev",
         "onCommand:extension.unitejs.taskPlatformElectronDevOptions",
         "onCommand:extension.unitejs.taskPlatformElectronPackage",
@@ -258,14 +288,14 @@
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "@types/mocha": "^2.2.42",
-        "@types/node": "^7.0.43",
-        "tslint": "^5.7.0",
-        "typescript": "^2.5.3",
-        "vscode": "^1.1.5"
+        "@types/mocha": "^2.2.44",
+        "@types/node": "^8.0.53",
+        "tslint": "^5.8.0",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.7"
     },
     "dependencies": {
-        "unitejs-cli": "^1.6.0",
+        "unitejs-cli": "^1.7.1",
         "util.promisify": "^1.0.0"
     }
 }

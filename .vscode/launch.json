@@ -20,7 +20,7 @@
             "request": "launch",
             "runtimeExecutable": "${execPath}",
             "args": ["--extensionDevelopmentPath=${workspaceRoot}", 
-            "E:/vscode/www" ],
+            "F:/vscode/www" ],
             "stopOnEntry": false,
             "sourceMaps": true,
             "outFiles": [ "${workspaceRoot}/out/**/*.js" ],

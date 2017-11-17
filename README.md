@@ -21,7 +21,7 @@ See [UniteJS CLI](http://unitejs.com/#/cli) documentation for more details.
 |                                        |                                             | unitTestRunner, unitTestFramework |
 |                                        |                                             | unitTestEngine, e2eTestRunner     |
 |                                        |                                             | e2eTestFramework, cssPre, cssPost |
-|                                        |                                             | packageManager                    |
+|                                        |                                             | cssLinter, packageManager         |
 | Unite: configure options no exec       | unite configure                             | as above but will only populate   |
 |                                        |                                             | terminal command, not execute it  |
 | Unite: configure update                | unite configure                             | no arguments only performs update |
@@ -56,6 +56,10 @@ See [UniteJS Generated App](http://unitejs.com/#/generatedapp) documentation for
 | Unite: task e2e options                       | gulp e2e                                    | grep, secure, port, browser        |
 | Unite: task serve                             | gulp serve                                  |                                    |
 | Unite: task serve options                     | gulp serve                                  | secure, port                       |
+| Unite: task platform cordova dev              | gulp platform-cordova-dev                   |                                    |
+| Unite: task platform cordova dev options      | gulp platform-cordova-dev                   | platforms, save                    |
+| Unite: task platform cordova theme            | gulp platform-theme-dev                     |                                    |
+| Unite: task platform cordova theme options    | gulp platform-theme-dev                     | platforms                          |
 | Unite: task platform docker package           | gulp platform-docker-package                |                                    |
 | Unite: task platform docker package options   | gulp platform-docker-package                | image, www, save                   |
 | Unite: task platform electron dev             | gulp platform-electron-dev                  |                                    |
