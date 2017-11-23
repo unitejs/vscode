@@ -21,7 +21,8 @@ See [UniteJS CLI](http://unitejs.com/#/cli) documentation for more details.
 |                                        |                                             | unitTestRunner, unitTestFramework |
 |                                        |                                             | unitTestEngine, e2eTestRunner     |
 |                                        |                                             | e2eTestFramework, cssPre, cssPost |
-|                                        |                                             | cssLinter, packageManager         |
+|                                        |                                             | cssLinter, documenter             |
+|                                        |                                             | packageManager                    |
 | Unite: configure options no exec       | unite configure                             | as above but will only populate   |
 |                                        |                                             | terminal command, not execute it  |
 | Unite: configure update                | unite configure                             | no arguments only performs update |
@@ -46,6 +47,7 @@ See [UniteJS Generated App](http://unitejs.com/#/generatedapp) documentation for
 | Unite: task build watch                       | gulp build --watch                          |                                    |
 | Unite: task build configuration               | gulp build                                  | buildConfiguration                 |
 | Unite: task theme build                       | gulp theme-build                            |                                    |
+| Unite: task doc build                         | gulp doc-build                              |                                    |
 | Unite: task unit                              | gulp unit                                   |                                    |
 | Unite: task unit watch                        | gulp unit                                   |                                    |
 | Unite: task unit single                       | gulp unit                                   | grep                               |

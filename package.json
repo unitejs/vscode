@@ -2,7 +2,7 @@
     "name": "unitejs-vscode",
     "displayName": "Unite JS",
     "description": "VSCode integration for UniteJS CLI",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "publisher": "unitejs",
     "license": "MIT",
     "engines": {
@@ -122,6 +122,11 @@
             {
                 "command": "extension.unitejs.taskThemeBuild",
                 "title": "task theme build",
+                "category": "Unite"
+            },
+            {
+                "command": "extension.unitejs.taskDocBuild",
+                "title": "task doc build",
                 "category": "Unite"
             },
             {
@@ -256,6 +261,7 @@
         "onCommand:extension.unitejs.taskBuildConfiguration",
         "onCommand:extension.unitejs.taskBuildWatch",
         "onCommand:extension.unitejs.taskThemeBuild",
+        "onCommand:extension.unitejs.taskDocBuild",
         "onCommand:extension.unitejs.taskUnit",
         "onCommand:extension.unitejs.taskUnitWatch",
         "onCommand:extension.unitejs.taskUnitSingle",
@@ -295,7 +301,7 @@
         "vscode": "^1.1.7"
     },
     "dependencies": {
-        "unitejs-cli": "^1.7.1",
+        "unitejs-cli": "^1.7.2",
         "util.promisify": "^1.0.0"
     }
 }

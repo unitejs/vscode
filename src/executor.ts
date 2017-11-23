@@ -4,6 +4,7 @@
 import { ErrorHandler } from "unitejs-framework/dist/helpers/errorHandler";
 import { ISpdx } from "unitejs-engine/dist/configuration/models/spdx/ISpdx";
 import { UniteConfiguration } from "unitejs-engine/dist/configuration/models/unite/uniteConfiguration";
+import { UniteThemeConfiguration } from "unitejs-engine/dist/configuration/models/uniteTheme/uniteThemeConfiguration";
 import { ConfigHelper } from "unitejs-engine/dist/engine/configHelper";
 import { PipelineLocator } from "unitejs-engine/dist/engine/pipelineLocator";
 import { IFileSystem } from "unitejs-framework/dist/interfaces/IFileSystem";
@@ -13,6 +14,7 @@ import * as vscode from "vscode";
 export class Executor {
     private static TERMINAL_NAME: string = "Unite";
     private static CONFIG_FILENAME: string = "unite.json";
+    private static THEME_CONFIG_FILENAME: string = "unite-theme.json";
 
     private _fileSystem: IFileSystem;
 
@@ -58,6 +60,7 @@ export class Executor {
             "TaskBuildConfiguration",
             "TaskBuildWatch",
             "TaskThemeBuild",
+            "TaskDocBuild",
             "TaskUnit",
             "TaskUnitSingle",
             "TaskUnitWatch",
@@ -105,11 +108,26 @@ export class Executor {
             })
     }
 
-    private async loadConfiguration(): Promise<UniteConfiguration> {
+    private async loadConfiguration(showError: boolean = true): Promise<UniteConfiguration> {
         try {
             return this._fileSystem.fileReadJson<UniteConfiguration>(this._uniteJsonLocation, Executor.CONFIG_FILENAME);
         } catch {
-            vscode.window.showErrorMessage(`Failed to load unite.json configuration file, make sure you have created a UniteJS installation using 'unite configure'`);
+            if (showError) {
+                vscode.window.showErrorMessage(`Failed to load unite.json configuration file, make sure you have created a UniteJS installation using 'unite configure'`);
+            }
+            return undefined;
+        }
+    }
+
+    private async loadThemeConfiguration(showError: boolean = true): Promise<UniteThemeConfiguration> {
+        try {
+            const themeConfigFolder = this._fileSystem.pathCombine(this._uniteJsonLocation, "www/assetsSrc/theme/");
+
+            return this._fileSystem.fileReadJson<UniteThemeConfiguration>(themeConfigFolder, Executor.THEME_CONFIG_FILENAME);
+        } catch {
+            if (showError) {
+                vscode.window.showErrorMessage(`Failed to load unite-theme.json configuration file, make sure you have created a UniteJS installation using 'unite configure'`);
+            }
             return undefined;
         }
     }
@@ -188,27 +206,31 @@ export class Executor {
     }
 
     private async internalCommandConfigureOptions(execute: boolean): Promise<void> {
-        const packageName = await this.inputBox("Please enter a package name ?");
+        const uniteConfig = await this.loadConfiguration(false) || new UniteConfiguration();
+        const uniteThemeConfig = await this.loadThemeConfiguration(false) || new UniteThemeConfiguration();
+        
+        const packageName = await this.inputBox(`Please enter a package name ?`, uniteConfig.packageName);
         if (packageName !== undefined) {
-            const title = await this.inputBox("Please enter a title ?");
+            const title = await this.inputBox("Please enter a title ?", uniteThemeConfig.title);
             if (title !== undefined) {
-                const license = await this.quickPick("License", await this.getLicenseOptions());
+                const license = await this.quickPick("License", await this.getLicenseOptions(), uniteConfig.license);
                 if (license !== undefined) {
-                    const parameters: { key: string, dir?: string, value?: string, addNone?: boolean, showCondition?: () => boolean }[] = [
-                        { key: "appFramework", dir: "applicationFramework" },
-                        { key: "sourceLanguage", dir: "language" },
-                        { key: "linter", addNone: true },
-                        { key: "moduleType" },
-                        { key: "bundler" },
-                        { key: "unitTestRunner", addNone: true },
-                        { key: "unitTestFramework", dir: "testFramework", showCondition: () => parameters.find(param => param.key === "unitTestRunner").value !== "None" },
-                        { key: "unitTestEngine", showCondition: () => parameters.find(param => param.key === "unitTestRunner").value !== "None" },
-                        { key: "e2eTestRunner", addNone: true },
-                        { key: "e2eTestFramework", dir: "testFramework", showCondition: () => parameters.find(param => param.key === "e2eTestRunner").value !== "None" },
-                        { key: "cssPre" },
-                        { key: "cssPost" },
-                        { key: "cssLinter" },
-                        { key: "packageManager" }
+                    const parameters: { key: string, dir?: string, value?: string, addNone?: boolean, showCondition?: () => boolean, default?: string }[] = [
+                        { key: "appFramework", dir: "applicationFramework", default: uniteConfig.applicationFramework },
+                        { key: "sourceLanguage", dir: "language", default: uniteConfig.sourceLanguage },
+                        { key: "linter", addNone: true, default: uniteConfig.linter },
+                        { key: "moduleType", default: uniteConfig.moduleType },
+                        { key: "bundler", default: uniteConfig.bundler },
+                        { key: "unitTestRunner", addNone: true, default: uniteConfig.unitTestRunner },
+                        { key: "unitTestFramework", dir: "testFramework", showCondition: () => parameters.find(param => param.key === "unitTestRunner").value !== "None", default: uniteConfig.unitTestFramework },
+                        { key: "unitTestEngine", showCondition: () => parameters.find(param => param.key === "unitTestRunner").value !== "None", default: uniteConfig.unitTestEngine },
+                        { key: "e2eTestRunner", addNone: true, default: uniteConfig.e2eTestRunner },
+                        { key: "e2eTestFramework", dir: "testFramework", showCondition: () => parameters.find(param => param.key === "e2eTestRunner").value !== "None", default: uniteConfig.e2eTestFramework },
+                        { key: "cssPre", default: uniteConfig.cssPre },
+                        { key: "cssPost", default: uniteConfig.cssPost },
+                        { key: "cssLinter", default: uniteConfig.cssLinter, addNone: true },
+                        { key: "documenter", default: uniteConfig.documenter, addNone: true },
+                        { key: "packageManager", default: uniteConfig.packageManager }
                     ];
 
                     for (let i = 0; i < parameters.length; i++) {
@@ -216,7 +238,7 @@ export class Executor {
 
                         if (show) {
                             parameters[i].value = await this.quickPick(`${parameters[i].key} ?`,
-                                await this.getPipelineOptions(parameters[i].dir ? parameters[i].dir : parameters[i].key, parameters[i].addNone));
+                                await this.getPipelineOptions(parameters[i].dir ? parameters[i].dir : parameters[i].key, parameters[i].addNone), parameters[i].default);
 
                             if (parameters[i].value === undefined) {
                                 return;
@@ -478,6 +500,21 @@ export class Executor {
             return this.exec(["gulp",
                 "theme-build"
             ], false, true);
+        }
+    }
+
+    private async commandTaskDocBuild(): Promise<void> {
+        const uniteConfig = await this.loadConfiguration();
+        if (uniteConfig) {
+            if (uniteConfig.documenter === undefined || uniteConfig.documenter === "None") {
+                vscode.window.showErrorMessage("Your UniteJS configuration does not specify a documenter");
+            } else {
+                await this.relocateToPackageJsonFolder(uniteConfig);
+
+                return this.exec(["gulp",
+                    "doc-build"
+                ], false, true);
+            }
         }
     }
 
@@ -1006,9 +1043,16 @@ export class Executor {
         }
     }
 
-    private quickPick(prompt: string, choices: string[]): Promise<string> {
+    private quickPick(prompt: string, choices: string[], defaultValue?: string): Promise<string> {
         return new Promise<string>((resolve, reject) => {
-            vscode.window.showQuickPick(choices, { placeHolder: prompt })
+            // If there is a default value make sure it is the top of the list
+            // as the showQuickPick does not have a default value option
+            let finalChoices = choices;
+            if (defaultValue) {
+                finalChoices = finalChoices.filter(v => v !== defaultValue);
+                finalChoices.unshift(defaultValue);
+            }
+            vscode.window.showQuickPick(finalChoices, { placeHolder: prompt })
                 .then((val) => {
                     resolve(val);
                 },
@@ -1018,11 +1062,11 @@ export class Executor {
         });
     }
 
-    private inputBox(prompt: string): Promise<string> {
+    private inputBox(prompt: string, defaultValue?: string): Promise<string> {
         return new Promise<string>((resolve, reject) => {
-            vscode.window.showInputBox({ prompt })
+            vscode.window.showInputBox({ prompt, value: defaultValue })
                 .then((val) => {
-                    resolve(val);
+                    resolve(val || defaultValue);
                 },
                 (err) => {
                     reject(err);

@@ -2,6 +2,12 @@
 
 What's changed in UniteJS VSCode extension.
 
+## v1.0.4
+
+* Added Documenter support
+* Added doc-build command
+* Change configure command when run again defaults to old values
+
 ## v1.0.3
 
 * Added CSS Linter support
